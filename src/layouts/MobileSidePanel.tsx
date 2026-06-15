@@ -23,9 +23,15 @@ export function MobileSidePanel() {
       <div
         className="fixed inset-0 z-40 bg-black/60 md:hidden"
         onClick={() => setOpen(false)}
+        aria-hidden="true"
       />
 
-      <aside className="fixed right-0 top-0 z-50 flex h-screen w-80 flex-col border-l border-zinc-800 bg-zinc-950 md:hidden">
+      <aside
+        role="dialog"
+        aria-modal="true"
+        aria-label="Applications and Inspector"
+        className="fixed right-0 top-0 z-50 flex h-screen w-80 flex-col border-l border-zinc-800 bg-zinc-950 md:hidden"
+      >
         <div className="flex items-center justify-between border-b border-zinc-800 p-4">
           <h2 className="font-semibold text-white">
             Applications
@@ -33,6 +39,7 @@ export function MobileSidePanel() {
 
           <button
             onClick={() => setOpen(false)}
+            aria-label="Close panel"
             className="text-zinc-400"
           >
             <X size={18} />

@@ -3,7 +3,10 @@ import { NodeInspector } from "@/features/inspector/components/NodeInspector";
 
 export function DesktopSidePanel() {
   return (
-    <aside className="flex h-full w-80 flex-col border-l border-zinc-800 bg-zinc-950">
+    <aside
+      aria-label="Applications and Inspector"
+      className="flex h-full w-80 flex-col border-l border-zinc-800 bg-zinc-950"
+    >
       <div className="border-b border-zinc-800 p-4">
         <h2 className="font-semibold text-white">
           Applications

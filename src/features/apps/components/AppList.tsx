@@ -1,12 +1,21 @@
+import { useState } from "react";
+
+import { Search } from "lucide-react";
+
 import { useAppsQuery } from "../hooks/useAppsQuery";
 
 import { useUiStore } from "@/stores/ui.store";
 
+import { AppListItem } from "./AppListItem";
+
 export function AppList() {
+  const [search, setSearch] = useState("");
+
   const {
     data,
     isLoading,
     isError,
+    refetch,
   } = useAppsQuery();
 
   const selectedAppId =
@@ -21,43 +30,78 @@ export function AppList() {
 
   if (isLoading) {
     return (
-      <div className="p-4 text-sm text-zinc-400">
-        Loading apps...
+      <div className="space-y-2 p-3">
+        {[1, 2, 3].map((i) => (
+          <div
+            key={i}
+            className="h-16 animate-pulse rounded-lg bg-zinc-800"
+          />
+        ))}
       </div>
     );
   }
 
   if (isError) {
     return (
-      <div className="p-4 text-sm text-red-400">
-        Failed to load apps
+      <div className="flex flex-col gap-2 p-4">
+        <p className="text-sm text-red-400">
+          Failed to load apps
+        </p>
+
+        <button
+          onClick={() => {
+            void refetch();
+          }}
+          className="w-full rounded-lg bg-blue-600 px-3 py-1.5 text-sm text-white hover:bg-blue-700"
+        >
+          Retry
+        </button>
       </div>
     );
   }
 
+  const filtered = data?.filter((app) =>
+    app.name
+      .toLowerCase()
+      .includes(search.toLowerCase()),
+  );
+
   return (
     <div className="space-y-2 p-3">
-      {data?.map((app) => (
-        <button
-          key={app.id}
-          onClick={() =>
-            setSelectedApp(app.id)
-          }
-          className={`w-full rounded-lg border p-3 text-left transition ${
-            selectedAppId === app.id
-              ? "border-blue-500 bg-blue-500/10"
-              : "border-zinc-800 bg-zinc-900 hover:bg-zinc-800"
-          }`}
-        >
-          <div className="font-medium text-white">
-            {app.name}
-          </div>
+      <div className="relative">
+        <Search
+          size={14}
+          className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500"
+        />
 
-          <div className="mt-1 text-xs text-zinc-400">
-            {app.description}
-          </div>
-        </button>
+        <input
+          type="text"
+          placeholder="Search apps..."
+          value={search}
+          onChange={(e) =>
+            setSearch(e.target.value)
+          }
+          aria-label="Search applications"
+          className="w-full rounded-lg border border-zinc-800 bg-zinc-900 py-2 pl-9 pr-3 text-sm text-white placeholder-zinc-500 focus:border-blue-500 focus:outline-none"
+        />
+      </div>
+
+      {filtered?.map((app) => (
+        <AppListItem
+          key={app.id}
+          app={app}
+          isSelected={
+            selectedAppId === app.id
+          }
+          onSelect={setSelectedApp}
+        />
       ))}
+
+      {filtered?.length === 0 && (
+        <p className="py-4 text-center text-sm text-zinc-500">
+          No apps match your search
+        </p>
+      )}
     </div>
   );
 }

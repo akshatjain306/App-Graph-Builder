@@ -1,4 +1,6 @@
 import {
+  applyEdgeChanges,
+  applyNodeChanges,
   Background,
   BackgroundVariant,
   Controls,
@@ -8,6 +10,8 @@ import {
 
 import "@xyflow/react/dist/style.css";
 
+import { GitBranch } from "lucide-react";
+
 import { useGraphQuery } from "@/features/apps/hooks/useGraphQuery";
 import { useGraphHydration } from "@/features/graph/hooks/useGraphHydration";
 
@@ -16,6 +20,18 @@ import { useUiStore } from "@/stores/ui.store";
 
 import { nodeTypes } from "../graph.constants";
 import { useDeleteSelectedNode } from "../hooks/useDeleteSelectedNode";
+import { useFitGraph } from "../hooks/useFitGraph";
+import { GraphError } from "./GraphError";
+import { GraphLoading } from "./GraphLoading";
+
+const defaultEdgeOptions = {
+  type: "smoothstep" as const,
+  animated: true,
+  style: {
+    stroke: "#525252",
+    strokeWidth: 1.5,
+  },
+};
 
 export function GraphCanvas() {
   const selectedAppId = useUiStore(
@@ -24,6 +40,14 @@ export function GraphCanvas() {
 
   const setSelectedNode = useUiStore(
     (state) => state.setSelectedNode,
+  );
+
+  const updateNodes = useGraphStore(
+    (state) => state.updateNodes,
+  );
+
+  const updateEdges = useGraphStore(
+    (state) => state.updateEdges,
   );
 
   const {
@@ -35,6 +59,7 @@ export function GraphCanvas() {
 
   useGraphHydration(data);
   useDeleteSelectedNode();
+  useFitGraph();
 
   const draft = useGraphStore((state) =>
     selectedAppId
@@ -44,48 +69,70 @@ export function GraphCanvas() {
 
   if (!selectedAppId) {
     return (
-      <div className="flex h-full items-center justify-center text-zinc-400">
-        Select an application
+      <div className="flex h-full flex-col items-center justify-center gap-3">
+        <div className="rounded-2xl bg-zinc-900 p-5">
+          <GitBranch
+            size={40}
+            className="text-zinc-700"
+          />
+        </div>
+
+        <p className="text-sm text-zinc-500">
+          Select an application to view its
+          service graph
+        </p>
       </div>
     );
   }
 
   if (isError) {
     return (
-      <div className="flex h-full flex-col items-center justify-center gap-4">
-        <p className="text-red-400">
-          Failed to load graph
-        </p>
-
-        <button
-          onClick={() => {
-            void refetch();
-          }}
-          className="rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
-        >
-          Retry
-        </button>
-      </div>
+      <GraphError
+        onRetry={() => {
+          void refetch();
+        }}
+      />
     );
   }
 
   if (isLoading || !draft) {
-    return (
-      <div className="flex h-full items-center justify-center text-zinc-400">
-        Loading graph...
-      </div>
-    );
+    return <GraphLoading />;
   }
 
   return (
     <div className="h-full w-full">
       <ReactFlow
         fitView
+        colorMode="dark"
         nodes={draft.nodes}
         edges={draft.edges}
         nodeTypes={nodeTypes}
+        defaultEdgeOptions={
+          defaultEdgeOptions
+        }
+        onNodesChange={(changes) => {
+          updateNodes(
+            selectedAppId,
+            applyNodeChanges(
+              changes,
+              draft.nodes,
+            ),
+          );
+        }}
+        onEdgesChange={(changes) => {
+          updateEdges(
+            selectedAppId,
+            applyEdgeChanges(
+              changes,
+              draft.edges,
+            ),
+          );
+        }}
         onNodeClick={(_, node) => {
           setSelectedNode(node.id);
+        }}
+        onPaneClick={() => {
+          setSelectedNode(null);
         }}
       >
         <MiniMap zoomable pannable />

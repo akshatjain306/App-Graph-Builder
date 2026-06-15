@@ -26,6 +26,7 @@ export function TopBar() {
           onClick={() =>
             setMobilePanelOpen(true)
           }
+          aria-label="Open navigation panel"
           className="rounded-lg border border-zinc-700 p-2 text-zinc-300 md:hidden"
         >
           <Menu size={16} />
@@ -39,16 +40,23 @@ export function TopBar() {
       </div>
 
       <div className="flex items-center gap-2">
-        <button className="rounded-lg border border-zinc-700 p-2 text-zinc-300 hover:bg-zinc-900">
+        <button
+          aria-label="Share"
+          className="rounded-lg border border-zinc-700 p-2 text-zinc-300 hover:bg-zinc-900"
+        >
           <Share2 size={16} />
         </button>
 
-        <button className="rounded-lg border border-zinc-700 p-2 text-zinc-300 hover:bg-zinc-900">
+        <button
+          aria-label="Toggle theme"
+          className="rounded-lg border border-zinc-700 p-2 text-zinc-300 hover:bg-zinc-900"
+        >
           <Moon size={16} />
         </button>
 
         <button
           onClick={triggerFitView}
+          aria-label="Fit graph to view"
           className="rounded-lg border border-zinc-700 p-2 text-zinc-300 hover:bg-zinc-900"
         >
           <Maximize2 size={16} />
