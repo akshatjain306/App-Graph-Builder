@@ -7,15 +7,13 @@ import App from "@/app/App";
 import { AppProviders } from "@/app/AppProviders";
 
 async function enableMocking() {
-  if (import.meta.env.DEV) {
-    const { worker } = await import(
-      "@/mocks/browser"
-    );
+  const { worker } = await import(
+    "@/mocks/browser"
+  );
 
-    await worker.start({
-      onUnhandledRequest: "bypass",
-    });
-  }
+  await worker.start({
+    onUnhandledRequest: "bypass",
+  });
 }
 
 void enableMocking().then(() => {
