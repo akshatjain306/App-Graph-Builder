@@ -3,6 +3,7 @@ import {
   Menu,
   Moon,
   Share2,
+  Sun,
 } from "lucide-react";
 
 import { useGraphControlsStore } from "@/stores/graph-controls.store";
@@ -19,22 +20,30 @@ export function TopBar() {
       (state) => state.setMobilePanelOpen,
     );
 
+  const theme = useUiStore(
+    (state) => state.theme,
+  );
+
+  const toggleTheme = useUiStore(
+    (state) => state.toggleTheme,
+  );
+
   return (
-    <header className="flex h-14 items-center justify-between border-b border-zinc-800 bg-black px-4">
+    <header className="flex h-14 items-center justify-between border-b border-edge bg-app px-4">
       <div className="flex items-center gap-3">
         <button
           onClick={() =>
             setMobilePanelOpen(true)
           }
           aria-label="Open navigation panel"
-          className="rounded-lg border border-zinc-700 p-2 text-zinc-300 md:hidden"
+          className="rounded-lg border border-edge p-2 text-dim md:hidden"
         >
           <Menu size={16} />
         </button>
 
-        <div className="h-8 w-8 rounded bg-white" />
+        <div className="h-8 w-8 rounded bg-primary" />
 
-        <h1 className="text-sm font-semibold text-white">
+        <h1 className="text-sm font-semibold text-fg">
           App Graph Builder
         </h1>
       </div>
@@ -42,22 +51,27 @@ export function TopBar() {
       <div className="flex items-center gap-2">
         <button
           aria-label="Share"
-          className="rounded-lg border border-zinc-700 p-2 text-zinc-300 hover:bg-zinc-900"
+          className="rounded-lg border border-edge p-2 text-dim hover:bg-scard"
         >
           <Share2 size={16} />
         </button>
 
         <button
+          onClick={toggleTheme}
           aria-label="Toggle theme"
-          className="rounded-lg border border-zinc-700 p-2 text-zinc-300 hover:bg-zinc-900"
+          className="rounded-lg border border-edge p-2 text-dim hover:bg-scard"
         >
-          <Moon size={16} />
+          {theme === "dark" ? (
+            <Sun size={16} />
+          ) : (
+            <Moon size={16} />
+          )}
         </button>
 
         <button
           onClick={triggerFitView}
           aria-label="Fit graph to view"
-          className="rounded-lg border border-zinc-700 p-2 text-zinc-300 hover:bg-zinc-900"
+          className="rounded-lg border border-edge p-2 text-dim hover:bg-scard"
         >
           <Maximize2 size={16} />
         </button>

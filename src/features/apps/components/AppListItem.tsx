@@ -33,7 +33,7 @@ export function AppListItem({
       className={`flex w-full items-center gap-3 rounded-lg border p-3 text-left transition-all ${
         isSelected
           ? "border-blue-500 bg-blue-500/10"
-          : "border-zinc-800 bg-zinc-900 hover:bg-zinc-800"
+          : "border-edge bg-scard hover:bg-inset"
       }`}
     >
       <div
@@ -43,11 +43,11 @@ export function AppListItem({
       </div>
 
       <div className="min-w-0 flex-1">
-        <div className="truncate text-sm font-medium text-white">
+        <div className="truncate text-sm font-medium text-fg">
           {app.name}
         </div>
 
-        <div className="truncate text-xs text-zinc-500">
+        <div className="truncate text-xs text-faint">
           {app.description}
         </div>
       </div>
@@ -57,7 +57,7 @@ export function AppListItem({
         className={`shrink-0 ${
           isSelected
             ? "text-blue-400"
-            : "text-zinc-600"
+            : "text-faint"
         }`}
       />
     </button>

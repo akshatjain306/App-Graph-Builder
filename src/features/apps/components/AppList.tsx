@@ -34,7 +34,7 @@ export function AppList() {
         {[1, 2, 3].map((i) => (
           <div
             key={i}
-            className="h-16 animate-pulse rounded-lg bg-zinc-800"
+            className="h-16 animate-pulse rounded-lg bg-inset"
           />
         ))}
       </div>
@@ -71,7 +71,7 @@ export function AppList() {
       <div className="relative">
         <Search
           size={14}
-          className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500"
+          className="absolute left-3 top-1/2 -translate-y-1/2 text-faint"
         />
 
         <input
@@ -82,7 +82,7 @@ export function AppList() {
             setSearch(e.target.value)
           }
           aria-label="Search applications"
-          className="w-full rounded-lg border border-zinc-800 bg-zinc-900 py-2 pl-9 pr-3 text-sm text-white placeholder-zinc-500 focus:border-blue-500 focus:outline-none"
+          className="w-full rounded-lg border border-edge bg-scard py-2 pl-9 pr-3 text-sm text-fg placeholder-faint focus:border-blue-500 focus:outline-none"
         />
       </div>
 
@@ -98,7 +98,7 @@ export function AppList() {
       ))}
 
       {filtered?.length === 0 && (
-        <p className="py-4 text-center text-sm text-zinc-500">
+        <p className="py-4 text-center text-sm text-faint">
           No apps match your search
         </p>
       )}

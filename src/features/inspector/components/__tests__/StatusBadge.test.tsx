@@ -23,7 +23,7 @@ describe("StatusBadge", () => {
       screen.getByText("healthy");
 
     expect(badge.className).toContain(
-      "text-green-400",
+      "text-status-healthy",
     );
   });
 
@@ -36,7 +36,7 @@ describe("StatusBadge", () => {
       screen.getByText("degraded");
 
     expect(badge.className).toContain(
-      "text-yellow-400",
+      "text-status-degraded",
     );
   });
 
@@ -48,7 +48,7 @@ describe("StatusBadge", () => {
     const badge = screen.getByText("down");
 
     expect(badge.className).toContain(
-      "text-red-400",
+      "text-status-down",
     );
   });
 });

@@ -42,6 +42,10 @@ export function GraphCanvas() {
     (state) => state.setSelectedNode,
   );
 
+  const theme = useUiStore(
+    (state) => state.theme,
+  );
+
   const updateNodes = useGraphStore(
     (state) => state.updateNodes,
   );
@@ -70,14 +74,14 @@ export function GraphCanvas() {
   if (!selectedAppId) {
     return (
       <div className="flex h-full flex-col items-center justify-center gap-3">
-        <div className="rounded-2xl bg-zinc-900 p-5">
+        <div className="rounded-2xl bg-scard p-5">
           <GitBranch
             size={40}
-            className="text-zinc-700"
+            className="text-faint"
           />
         </div>
 
-        <p className="text-sm text-zinc-500">
+        <p className="text-sm text-faint">
           Select an application to view its
           service graph
         </p>
@@ -103,7 +107,7 @@ export function GraphCanvas() {
     <div className="h-full w-full">
       <ReactFlow
         fitView
-        colorMode="dark"
+        colorMode={theme}
         nodes={draft.nodes}
         edges={draft.edges}
         nodeTypes={nodeTypes}

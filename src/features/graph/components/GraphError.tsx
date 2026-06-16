@@ -10,11 +10,11 @@ export function GraphError({
   return (
     <div className="flex h-full flex-col items-center justify-center gap-4">
       <AlertTriangle
-        className="text-red-400"
+        className="text-destructive"
         size={28}
       />
 
-      <p className="text-red-400">
+      <p className="text-destructive">
         Failed to load graph
       </p>
 

@@ -41,7 +41,7 @@ export function NodeInspector() {
     !selectedAppId
   ) {
     return (
-      <div className="p-4 text-sm text-zinc-400">
+      <div className="p-4 text-sm text-dim">
         Select a node to inspect.
       </div>
     );

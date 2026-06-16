@@ -36,7 +36,7 @@ function GradientBar({
 }) {
   return (
     <div className="flex items-center gap-2">
-      <div className="h-2 flex-1 overflow-hidden rounded-full bg-zinc-800">
+      <div className="h-2 flex-1 overflow-hidden rounded-full bg-inset">
         <div
           className="h-full rounded-full transition-all duration-300"
           style={{
@@ -47,7 +47,7 @@ function GradientBar({
         />
       </div>
 
-      <span className="min-w-10 text-right text-xs tabular-nums text-zinc-300">
+      <span className="min-w-10 text-right text-xs tabular-nums text-dim">
         {value}%
       </span>
     </div>
@@ -75,10 +75,10 @@ function ServiceNodeComponent({
 
   return (
     <div
-      className={`min-w-60 rounded-xl border bg-zinc-900/95 p-4 shadow-xl backdrop-blur transition-all ${
+      className={`min-w-60 rounded-xl border bg-scard/95 p-4 shadow-xl backdrop-blur transition-all ${
         selected
           ? "border-blue-500 shadow-blue-500/20 ring-1 ring-blue-500/40"
-          : "border-zinc-700/80 hover:border-zinc-600"
+          : "border-edge hover:border-shover"
       }`}
     >
       <div className="mb-3 flex items-center gap-2">
@@ -89,49 +89,49 @@ function ServiceNodeComponent({
           />
         </div>
 
-        <span className="flex-1 truncate text-sm font-semibold text-white">
+        <span className="flex-1 truncate text-sm font-semibold text-fg">
           {data.name}
         </span>
 
         <Settings
           size={14}
-          className="shrink-0 text-zinc-600"
+          className="shrink-0 text-faint"
         />
       </div>
 
       <div className="mb-3 grid grid-cols-3 gap-2 text-center text-xs">
-        <div className="rounded-md bg-zinc-800/60 px-2 py-1">
-          <span className="tabular-nums text-white">
+        <div className="rounded-md bg-inset/60 px-2 py-1">
+          <span className="tabular-nums text-fg">
             {data.cpu}%
           </span>
 
-          <span className="ml-1 text-zinc-500">
+          <span className="ml-1 text-faint">
             CPU
           </span>
         </div>
 
-        <div className="rounded-md bg-zinc-800/60 px-2 py-1">
-          <span className="tabular-nums text-white">
+        <div className="rounded-md bg-inset/60 px-2 py-1">
+          <span className="tabular-nums text-fg">
             {data.memory}%
           </span>
 
-          <span className="ml-1 text-zinc-500">
+          <span className="ml-1 text-faint">
             Mem
           </span>
         </div>
 
-        <div className="rounded-md bg-zinc-800/60 px-2 py-1">
-          <span className="tabular-nums text-white">
+        <div className="rounded-md bg-inset/60 px-2 py-1">
+          <span className="tabular-nums text-fg">
             {data.disk}%
           </span>
 
-          <span className="ml-1 text-zinc-500">
+          <span className="ml-1 text-faint">
             Disk
           </span>
         </div>
       </div>
 
-      <div className="nodrag mb-3 flex gap-0.5 rounded-lg bg-zinc-800/80 p-0.5">
+      <div className="nodrag mb-3 flex gap-0.5 rounded-lg bg-inset/80 p-0.5">
         {(
           [
             "cpu",
@@ -147,8 +147,8 @@ function ServiceNodeComponent({
             }
             className={`flex-1 rounded-md px-1.5 py-1 text-[11px] font-medium capitalize transition-colors ${
               activeTab === tab
-                ? "bg-zinc-700 text-white shadow-sm"
-                : "text-zinc-500 hover:text-zinc-300"
+                ? "bg-shover text-fg shadow-sm"
+                : "text-faint hover:text-dim"
             }`}
           >
             {tab}
@@ -157,7 +157,7 @@ function ServiceNodeComponent({
       </div>
 
       {activeTab === "region" ? (
-        <div className="flex h-7 items-center rounded-md bg-zinc-800/40 px-3 text-xs text-zinc-300">
+        <div className="flex h-7 items-center rounded-md bg-inset/40 px-3 text-xs text-dim">
           🌍 {data.region}
         </div>
       ) : (
@@ -169,7 +169,7 @@ function ServiceNodeComponent({
           status={data.status}
         />
 
-        <span className="text-[10px] text-zinc-600">
+        <span className="text-[10px] text-faint">
           {data.region}
         </span>
       </div>

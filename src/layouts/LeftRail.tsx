@@ -9,25 +9,25 @@ export function LeftRail() {
   return (
     <aside
       aria-label="Quick links"
-      className="flex w-16 flex-col items-center gap-4 border-r border-zinc-800 bg-black py-4"
+      className="flex w-16 flex-col items-center gap-4 border-r border-edge bg-app py-4"
     >
       <Github
-        className="text-zinc-400"
+        className="text-dim"
         aria-hidden="true"
       />
 
       <Server
-        className="text-zinc-400"
+        className="text-dim"
         aria-hidden="true"
       />
 
       <Database
-        className="text-zinc-400"
+        className="text-dim"
         aria-hidden="true"
       />
 
       <Boxes
-        className="text-zinc-400"
+        className="text-dim"
         aria-hidden="true"
       />
     </aside>

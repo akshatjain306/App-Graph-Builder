@@ -5,6 +5,17 @@ import type {
   NodeId,
 } from "@/types/common.types";
 
+type Theme = "light" | "dark";
+
+function getInitialTheme(): Theme {
+  if (typeof window === "undefined")
+    return "dark";
+  return (
+    (localStorage.getItem("theme") as Theme) ??
+    "dark"
+  );
+}
+
 interface UiState {
   selectedAppId: AppId | null;
   selectedNodeId: NodeId | null;
@@ -12,6 +23,8 @@ interface UiState {
   isMobilePanelOpen: boolean;
 
   activeInspectorTab: InspectorTab;
+
+  theme: Theme;
 
   setSelectedApp: (appId: AppId | null) => void;
 
@@ -22,6 +35,8 @@ interface UiState {
   setInspectorTab: (
     tab: InspectorTab,
   ) => void;
+
+  toggleTheme: () => void;
 }
 
 export const useUiStore =
@@ -33,6 +48,8 @@ export const useUiStore =
     isMobilePanelOpen: false,
 
     activeInspectorTab: "config",
+
+    theme: getInitialTheme(),
 
     setSelectedApp: (appId) =>
       set({
@@ -53,5 +70,20 @@ export const useUiStore =
     setInspectorTab: (tab) =>
       set({
         activeInspectorTab: tab,
+      }),
+
+    toggleTheme: () =>
+      set((state) => {
+        const next =
+          state.theme === "dark"
+            ? "light"
+            : "dark";
+
+        localStorage.setItem(
+          "theme",
+          next,
+        );
+
+        return { theme: next };
       }),
   }));

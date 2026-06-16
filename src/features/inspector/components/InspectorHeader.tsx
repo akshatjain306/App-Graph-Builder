@@ -14,11 +14,11 @@ export function InspectorHeader({
   return (
     <>
       <div>
-        <h3 className="text-lg font-semibold text-white">
+        <h3 className="text-lg font-semibold text-fg">
           Service Node
         </h3>
 
-        <p className="text-sm text-zinc-400">
+        <p className="text-sm text-dim">
           {name}
         </p>
       </div>

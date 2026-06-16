@@ -16,7 +16,7 @@ export function ConfigTab({
       <div>
         <label
           htmlFor="node-name"
-          className="mb-1 block text-sm text-zinc-400"
+          className="mb-1 block text-sm text-dim"
         >
           Node Name
         </label>
@@ -27,14 +27,14 @@ export function ConfigTab({
           onChange={(e) =>
             onNameChange(e.target.value)
           }
-          className="w-full rounded border border-zinc-700 bg-zinc-900 p-2 text-white"
+          className="w-full rounded border border-edge bg-scard p-2 text-fg"
         />
       </div>
 
       <div>
         <label
           htmlFor="cpu-capacity"
-          className="mb-2 block text-sm text-zinc-400"
+          className="mb-2 block text-sm text-dim"
         >
           CPU Capacity
         </label>
@@ -64,7 +64,7 @@ export function ConfigTab({
               Number(e.target.value),
             )
           }
-          className="mt-2 w-full rounded border border-zinc-700 bg-zinc-900 p-2 text-white"
+          className="mt-2 w-full rounded border border-edge bg-scard p-2 text-fg"
         />
       </div>
     </div>

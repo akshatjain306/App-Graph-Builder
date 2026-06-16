@@ -2,10 +2,10 @@ import type { ServiceStatus } from "@/types/common.types";
 
 const statusStyles: Record<ServiceStatus, string> = {
   healthy:
-    "bg-green-500/20 text-green-400",
+    "bg-status-healthy-bg text-status-healthy",
   degraded:
-    "bg-yellow-500/20 text-yellow-400",
-  down: "bg-red-500/20 text-red-400",
+    "bg-status-degraded-bg text-status-degraded",
+  down: "bg-status-down-bg text-status-down",
 };
 
 interface Props {

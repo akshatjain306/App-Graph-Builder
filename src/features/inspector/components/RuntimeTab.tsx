@@ -13,34 +13,34 @@ export function RuntimeTab({
 }: Props) {
   return (
     <div className="space-y-3">
-      <div className="rounded border border-zinc-800 p-3">
-        <p className="text-zinc-400">CPU</p>
+      <div className="rounded border border-edge p-3">
+        <p className="text-dim">CPU</p>
 
-        <p className="text-white">{cpu}%</p>
+        <p className="text-fg">{cpu}%</p>
       </div>
 
-      <div className="rounded border border-zinc-800 p-3">
-        <p className="text-zinc-400">
+      <div className="rounded border border-edge p-3">
+        <p className="text-dim">
           Memory
         </p>
 
-        <p className="text-white">
+        <p className="text-fg">
           {memory}%
         </p>
       </div>
 
-      <div className="rounded border border-zinc-800 p-3">
-        <p className="text-zinc-400">Disk</p>
+      <div className="rounded border border-edge p-3">
+        <p className="text-dim">Disk</p>
 
-        <p className="text-white">{disk}%</p>
+        <p className="text-fg">{disk}%</p>
       </div>
 
-      <div className="rounded border border-zinc-800 p-3">
-        <p className="text-zinc-400">
+      <div className="rounded border border-edge p-3">
+        <p className="text-dim">
           Region
         </p>
 
-        <p className="text-white">{region}</p>
+        <p className="text-fg">{region}</p>
       </div>
     </div>
   );

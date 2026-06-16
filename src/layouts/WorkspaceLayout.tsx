@@ -11,7 +11,7 @@ export function WorkspaceLayout({
   children,
 }: Props) {
   return (
-    <div className="h-screen bg-black">
+    <div className="h-screen bg-app">
       <TopBar />
 
       <div className="flex h-[calc(100vh-56px)]">
