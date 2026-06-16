@@ -9,7 +9,7 @@ export function LeftRail() {
   return (
     <aside
       aria-label="Quick links"
-      className="flex w-16 flex-col items-center gap-4 border-r border-edge bg-app py-4"
+      className="hidden w-16 flex-col items-center gap-4 border-r border-edge bg-app py-4 md:flex"
     >
       <Github
         className="text-dim"

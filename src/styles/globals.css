@@ -155,8 +155,8 @@
   html,
   body,
   #root {
-    min-width: 320px;
     min-height: 100%;
+    overflow: hidden;
   }
 
   html {
@@ -165,7 +165,7 @@
 
   body {
     @apply m-0 bg-background font-sans text-foreground antialiased;
-    min-height: 100vh;
+    min-height: 100dvh;
   }
 
   button,

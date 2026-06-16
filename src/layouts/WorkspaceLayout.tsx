@@ -11,13 +11,13 @@ export function WorkspaceLayout({
   children,
 }: Props) {
   return (
-    <div className="h-screen bg-app">
+    <div className="h-dvh bg-app">
       <TopBar />
 
-      <div className="flex h-[calc(100vh-56px)]">
+      <div className="flex h-[calc(100dvh-56px)]">
         <LeftRail />
 
-        <main className="flex-1">
+        <main className="min-w-0 flex-1">
           {children}
         </main>
 

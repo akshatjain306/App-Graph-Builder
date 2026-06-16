@@ -30,7 +30,7 @@ export function MobileSidePanel() {
         role="dialog"
         aria-modal="true"
         aria-label="Applications and Inspector"
-        className="fixed right-0 top-0 z-50 flex h-screen w-80 flex-col border-l border-edge bg-panel md:hidden"
+        className="fixed right-0 top-0 z-50 flex h-screen w-full max-w-80 flex-col border-l border-edge bg-panel md:hidden"
       >
         <div className="flex items-center justify-between border-b border-edge p-4">
           <h2 className="font-semibold text-fg">

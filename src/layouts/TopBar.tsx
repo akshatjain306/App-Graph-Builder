@@ -4,6 +4,7 @@ import {
   Moon,
   Share2,
   Sun,
+  Workflow,
 } from "lucide-react";
 
 import { useGraphControlsStore } from "@/stores/graph-controls.store";
@@ -41,7 +42,12 @@ export function TopBar() {
           <Menu size={16} />
         </button>
 
-        <div className="h-8 w-8 rounded bg-primary" />
+        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 shadow-sm">
+          <Workflow
+            size={18}
+            className="text-white"
+          />
+        </div>
 
         <h1 className="text-sm font-semibold text-fg">
           App Graph Builder
